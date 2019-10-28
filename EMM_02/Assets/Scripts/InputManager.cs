@@ -12,7 +12,7 @@ public class InputManager : MonoBehaviour
 
     void Start()
     {
-        
+        menu.SetActive(false);
     }
 
     // Update is called once per frame
