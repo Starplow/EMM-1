@@ -30,47 +30,75 @@ public class LeapBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Frame frame = provider.CurrentFrame;
-        foreach (Hand hand in frame.Hands){
 
-            float yaw = hand.Direction.Yaw;
-            Debug.Log("Neigung" +yaw);
+        if(Time.timeScale == 1)
+        {
 
-            // transform.position = hand.PalmPosition.ToVector3() + hand.PalmNormal.ToVector3() * (transform.localScale.y * .5f + .02f);
-            // transform.rotation = hand.Basis.rotation.ToQuaternion();
+        
+            Frame frame = provider.CurrentFrame;
+            foreach (Hand hand in frame.Hands){
 
-            if(yaw > -Mathf.PI && yaw < 0)
-            {
-                transform.position += transform.forward * Time.deltaTime  * 5;
-            }
-            else if (yaw < Mathf.PI && yaw > 0)
-            {
-                transform.position += (transform.forward * -1) * Time.deltaTime * 5;
-            }
+                LeapQuaternion rotate = hand.Rotation;
+                Quaternion rotateUnity = rotate.ToQuaternion();
+                float yaw = hand.Direction.Yaw;
+                Debug.Log("Neigung: " + rotateUnity.eulerAngles);
 
-            //Rotation
+                // transform.position = hand.PalmPosition.ToVector3() + hand.PalmNormal.ToVector3() * (transform.localScale.y * .5f + .02f);
+                // transform.rotation = hand.Basis.rotation.ToQuaternion();
+                if(rotateUnity.eulerAngles.x < 40 || rotateUnity.eulerAngles.x > 320)
+                {
+
+
+                }
+                else if(rotateUnity.eulerAngles.x >= 40 && rotateUnity.eulerAngles.x < 180)
+                {
+                    transform.position += transform.forward * Time.deltaTime  * 5;
+                }
+                else if (rotateUnity.eulerAngles.x < 320 && rotateUnity.eulerAngles.x >= 180)
+                {
+                    transform.position += (transform.forward * -1) * Time.deltaTime * 5;
+                }
+                
+
+                //Rotation
             
-            LeapQuaternion rotate = hand.Rotation;
-            Debug.Log("Rotate: " + rotate);
+                
+                
+                //rotateUnity.eulerAngles.y;
 
-            rotateAngle += rotate.y * rotateSpeed;
-            Vector3 targetDirection = new Vector3(Mathf.Sin(rotateAngle), 0, Mathf.Cos(rotateAngle));
-            targetRotation = Quaternion.LookRotation(targetDirection);
-            transform.rotation = targetRotation;
+                Debug.Log("Rotate: " + rotateUnity.eulerAngles);
+
+
+
+                if (!(rotateUnity.eulerAngles.z < 50 || rotateUnity.eulerAngles.z > 310))
+                {
+
+                    rotateAngle += -1 * rotate.z * rotateSpeed;
+                    Vector3 targetDirection = new Vector3(Mathf.Sin(rotateAngle), 0, Mathf.Cos(rotateAngle));
+                    targetRotation = Quaternion.LookRotation(targetDirection);
+
+                    transform.rotation = targetRotation;
+
+                }
+                
+                    
+                
+                
 
            
-            //Jump
-            Vector palm = hand.PalmVelocity;
+                //Jump
+                Vector palm = hand.PalmVelocity;
 
-            if (palm.y >= 0.5)
-                rb.AddForce(transform.up * thrust);
-            Debug.Log("PalmVelocity: " + palm);
-
-
+                if (palm.y >= 0.5)
+                    rb.AddForce(transform.up * thrust);
+                Debug.Log("PalmVelocity: " + palm);
 
 
 
+
+
+            }
         }
-        
+
     }
 }

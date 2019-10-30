@@ -14,9 +14,13 @@ public class CollectoablesController : MonoBehaviour
     void Update()
     {
         //Rotate the Collectables
-        transform.rotation *= Quaternion.Euler(1,
+
+        if (Time.timeScale == 1)
+        {
+            transform.rotation *= Quaternion.Euler(1,
                                                1,
                                                1);
+        }
     }
 
 }
