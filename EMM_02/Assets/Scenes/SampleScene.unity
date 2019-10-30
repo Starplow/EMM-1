@@ -2196,7 +2196,7 @@ MonoBehaviour:
   rotateAngle: 0
   targetRotation: {x: 0, y: 0, z: 0, w: 0}
   rb: {fileID: 1866994238}
-  thrust: 100
+  thrust: 70
 --- !u!114 &1866994244
 MonoBehaviour:
   m_ObjectHideFlags: 0
