@@ -17,11 +17,14 @@ public class LeapBehaviour : MonoBehaviour
     //Rotate Angle
     public float rotateAngle;
     public Quaternion targetRotation;
+    public Rigidbody rb;
+    public float thrust;
     
-
     // Start is called before the first frame update
     void Start() { 
         provider = FindObjectOfType<LeapServiceProvider>() as LeapServiceProvider;
+
+        rb = GetComponent<Rigidbody>();
     }
    
     // Update is called once per frame
@@ -31,22 +34,22 @@ public class LeapBehaviour : MonoBehaviour
         foreach (Hand hand in frame.Hands){
 
             float yaw = hand.Direction.Yaw;
-            //Debug.Log(yaw);
+            Debug.Log("Neigung" +yaw);
 
             // transform.position = hand.PalmPosition.ToVector3() + hand.PalmNormal.ToVector3() * (transform.localScale.y * .5f + .02f);
             // transform.rotation = hand.Basis.rotation.ToQuaternion();
 
-            if(yaw > -1.6f && yaw < 3.5f)
+            if(yaw > -Mathf.PI && yaw < 0)
             {
                 transform.position += transform.forward * Time.deltaTime  * 5;
             }
-            else if (yaw < -1.6f)
+            else if (yaw < Mathf.PI && yaw > 0)
             {
                 transform.position += (transform.forward * -1) * Time.deltaTime * 5;
             }
 
             //Rotation
-            //-0.5 Links//-1.0 Rechts
+            
             LeapQuaternion rotate = hand.Rotation;
             Debug.Log("Rotate: " + rotate);
 
@@ -58,9 +61,16 @@ public class LeapBehaviour : MonoBehaviour
            
             //Jump
             Vector palm = hand.PalmVelocity;
+
+            if (palm.y >= 0.5)
+                rb.AddForce(transform.up * thrust);
             Debug.Log("PalmVelocity: " + palm);
 
 
+
+
+
         }
+        
     }
 }
