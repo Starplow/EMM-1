@@ -2167,6 +2167,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4338610488002391134}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1866994237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866994236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8907cb4d542b6d446be37af05df63d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &1866994238 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 4338610486244458012, guid: 8a7ecf9a8b5cdf64992303744439d87d,
@@ -2186,7 +2198,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866994236}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3aff09ccb43a714ca6073b63f98b818, type: 3}
   m_Name: 
@@ -2318,6 +2330,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4338610486244458012, guid: 8a7ecf9a8b5cdf64992303744439d87d,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338610486244458012, guid: 8a7ecf9a8b5cdf64992303744439d87d,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4338610486244458014, guid: 8a7ecf9a8b5cdf64992303744439d87d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2392,16 +2414,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4338610486244458012, guid: 8a7ecf9a8b5cdf64992303744439d87d,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4338610486244458012, guid: 8a7ecf9a8b5cdf64992303744439d87d,
-        type: 3}
-      propertyPath: m_CollisionDetection
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a7ecf9a8b5cdf64992303744439d87d, type: 3}
